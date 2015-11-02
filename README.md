@@ -1,5 +1,7 @@
 # mean-starter-kit
 
+[![Join the chat at https://gitter.im/danivek/mean-starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/danivek/mean-starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Dependency Status](https://david-dm.org/danivek/mean-starter-kit.svg)](https://david-dm.org/danivek/mean-starter-kit) [![devDependency Status](https://david-dm.org/danivek/mean-starter-kit/dev-status.svg)](https://david-dm.org/danivek/mean-starter-kit#info=devDependencies)
 
 > Starter kit (seed) for MEAN stack applications - MongoDB, Express, AngularJS, NodeJS with Gulp
