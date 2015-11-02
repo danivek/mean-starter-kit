@@ -1,0 +1,16 @@
+{
+  "main": {
+    "helloWorld": "Hello, world !",
+    "text": "This is a starter kit for MEAN stack applications",
+    "name": {
+      "label": "Name",
+      "placeholder": "Enter a name"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Enter a description"
+    },
+    "show": "Show",
+    "submit": "Send"
+  }
+}

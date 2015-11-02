@@ -1,0 +1,16 @@
+{
+  "main": {
+    "helloWorld": "Bonjour, le monde !",
+    "text": "Ceci est un kit de démarrage pour les applications MEAN",
+    "name": {
+      "label": "Nom",
+      "placeholder": "Entrer un nom"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Entrer une description"
+    },
+    "show": "Voir",
+    "submit": "Envoyer"
+  }
+}

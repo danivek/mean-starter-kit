@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>{{'main.helloWorld' | translate}}</h1>
+      <p>{{'main.text' | translate}}</p>
+    </div>
+  </div>
+  <div class="container">
+    <h2>List of things</h2>
+    <div>
+      <button class="btn btn-success" ng-click="getThings()">{{'main.show' | translate}}</button>
+      <ul>
+        <li ng-repeat="thing in thingsList">
+          name: {{thing.name}}, description: {{thing.description}}
+        </li>
+        <li ng-if="thingsList.length == 0">
+          <strong>No results found...</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Create a thing</h2>
+    <div class="thing-form">
+      <form role="form" name="thingPostForm" ng-submit="postThing()" novalidate>
+        <div class="form-group">
+          <label for="name">{{'main.name.label' | translate}}</label>
+          <input type="text" class="form-control" id="name" name="name" ng-model="thing.name" placeholder="{{'main.name.placeholder'| translate}}">
+        </div>
+        <div class="form-group">
+          <label for="description">{{'main.description.label' | translate}}</label>
+          <input type="text" class="form-control" id="description" name="description" ng-model="thing.description" placeholder="{{'main.description.placeholder'| translate}}">
+        </div>
+        <button type="submit" class="btn btn-success">{{'main.submit' | translate}}</button> {{status}}
+      </form>
+    </div>
+  </div>
+</div>

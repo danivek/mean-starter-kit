@@ -1,0 +1,17 @@
+/* ngcloak
+ * Docs : https://docs.angularjs.org/api/ng/directive/ngCloak
+ */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.thing-form {
+  margin-right: 0;
+  margin-left: 0;
+  background-color: #fff;
+  border-color: #ddd;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px 4px 0 0;
+  padding: 10px;
+}
