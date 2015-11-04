@@ -66,10 +66,11 @@ gulp.task('server:test', function(cb) {
         })) // Enforce a coverage of at least 50%
         .on('end', function() {
           cb();
+          process.exit();
         });
     });
 });
 
 /* Main Tasks for server */
 gulp.task('server:default', gulp.series(['server:lint-dev', 'server:serve', 'server:watch']));
-gulp.task('server:dist', gulp.series(['server:lint', 'server:test', 'server:build']));
+gulp.task('server:dist', gulp.series(['server:lint', 'server:build']));

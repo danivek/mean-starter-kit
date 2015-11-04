@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "node ./node_modules/gulp/bin/gulp.js",
-    "test": "node ./node_modules/gulp/bin/gulp.js test"
+    "test": "node ./node_modules/gulp/bin/gulp.js test",
+    "dist": "node ./node_modules/gulp/bin/gulp.js dist"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
