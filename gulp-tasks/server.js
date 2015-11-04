@@ -66,7 +66,6 @@ gulp.task('server:test', function(cb) {
         })) // Enforce a coverage of at least 50%
         .on('end', function() {
           cb();
-          process.exit();
         });
     });
 });
