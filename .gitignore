@@ -3,6 +3,7 @@
 .diff
 .patch
 .tmp
+.idea/
 
 node_modules/
 bower_components/

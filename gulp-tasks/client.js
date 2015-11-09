@@ -17,11 +17,6 @@ var revReplace = require('gulp-rev-replace');
 var browserSync = require('browser-sync');
 var proxy = require('http-proxy-middleware');
 
-// Proxy Middleware to Express app
-var proxyServer = proxy('/api', {
-  target: 'http://localhost:3002'
-});
-
 gulp.task('client:lint', function() {
   return gulp.src(['client/app/**/*.js'])
     .pipe(jshint()) // jshint
@@ -69,6 +64,12 @@ gulp.task('client:copy-angular-i18n-dist', function() {
 });
 
 gulp.task('client:serve', function(cb) {
+
+  // Proxy Middleware to Express app
+  var proxyServer = proxy('/api', {
+    target: 'http://localhost:3002'
+  });
+
   browserSync.instance = browserSync.init({
     startPath: '/',
     server: {
@@ -84,7 +85,7 @@ gulp.task('client:serve', function(cb) {
 });
 
 gulp.task('client:watch', function() {
-  gulp.watch('client/*.html', browserSync.reload);
+  gulp.watch('client/*.html', gulp.series(['client:inject'], browserSync.reload));
   gulp.watch('client/app/**/*.html', gulp.series(['client:template', 'client:inject'], browserSync.reload));
   gulp.watch('client/app/**/*.js', gulp.series(['client:lint', 'client:inject'], browserSync.reload));
   gulp.watch('client/**/*.css', browserSync.reload);
