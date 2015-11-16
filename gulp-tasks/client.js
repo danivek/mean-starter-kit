@@ -53,14 +53,9 @@ gulp.task('client:inject', function() {
     .pipe(gulp.dest('.tmp/'));
 });
 
-gulp.task('client:copy-angular-i18n', function() {
+gulp.task('client:copy-i18n', function() {
   return gulp.src('bower_components/angular-i18n/*.js')
     .pipe(gulp.dest('.tmp/i18n/angular'));
-});
-
-gulp.task('client:copy-angular-i18n-dist', function() {
-  return gulp.src('bower_components/angular-i18n/*.js')
-    .pipe(gulp.dest('dist/public/i18n/angular'));
 });
 
 gulp.task('client:serve', function(cb) {
@@ -87,7 +82,7 @@ gulp.task('client:serve', function(cb) {
 gulp.task('client:watch', function() {
   gulp.watch('client/*.html', gulp.series(['client:inject'], browserSync.reload));
   gulp.watch('client/app/**/*.html', gulp.series(['client:template', 'client:inject'], browserSync.reload));
-  gulp.watch('client/app/**/*.js', gulp.series(['client:lint', 'client:inject'], browserSync.reload));
+  gulp.watch(['client/app/*.js', 'client/app/**/*.js'], gulp.series(['client:lint-dev', 'client:inject'], browserSync.reload));
   gulp.watch('client/**/*.css', browserSync.reload);
 });
 
@@ -115,6 +110,24 @@ gulp.task('client:build', function() {
     .pipe(gulp.dest('dist/public'));
 });
 
+gulp.task('client:copy-i18n-dist', gulp.parallel([
+  function copyAngulari18n() {
+    return gulp.src('bower_components/angular-i18n/*.js')
+      .pipe(gulp.dest('dist/public/i18n/angular'));
+  },
+  function copyAppi18n() {
+    return gulp.src('client/i18n/*.json')
+      .pipe(gulp.dest('dist/public/i18n'));
+  }
+]));
+
+gulp.task('client:copy-fonts-dist', gulp.parallel([
+  function copyBootstrapFonts() {
+    return gulp.src('bower_components/bootstrap/dist/fonts/*')
+      .pipe(gulp.dest('dist/public/fonts'));
+  }
+]));
+
 /* Main Tasks for client */
-gulp.task('client:default', gulp.series(['client:lint-dev', 'client:template', 'client:inject', 'client:copy-angular-i18n', 'client:serve', 'client:watch']));
-gulp.task('client:dist', gulp.series(['client:lint', 'client:template', 'client:inject', 'client:copy-angular-i18n-dist', 'client:build']));
+gulp.task('client:default', gulp.series(['client:lint-dev', 'client:template', 'client:inject', 'client:copy-i18n', 'client:serve', 'client:watch']));
+gulp.task('client:dist', gulp.series(['client:lint', 'client:template', 'client:inject', 'client:copy-i18n-dist', 'client:copy-fonts-dist', 'client:build']));
