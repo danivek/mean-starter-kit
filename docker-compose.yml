@@ -1,0 +1,23 @@
+#nginx:
+#  restart: always
+#  build: ./nginx/
+#  ports:
+#    - "80:80"
+#  volumes:
+#    - /www/public
+#  volumes_from:
+#    - web
+#  links:
+#    - web:web
+
+web:
+  build: .
+  ports:
+    - 3002:3002
+  links:
+    - "db:mongodb"
+
+db:
+  image: mongo:3
+  ports:
+    - 27017
