@@ -15,7 +15,7 @@ var routes = require('./src/routes');
 /**
  * MongoDB configurations
  */
-var mongodbUrl = 'mongodb://' + config.database.host + '/' + config.database.db;
+var mongodbUrl = 'mongodb://' + config.DB_HOST + ':' + config.DB_PORT + '/' + config.DB_NAME;
 
 // Database options
 var dbOptions = {
@@ -51,10 +51,13 @@ app.use(cors());
 // Bootstrap routes
 app.use(routes);
 
+// Static files
+app.use('/', express.static(__dirname + '/../public'));
+
 // Once database open, start server
 mongoose.connection.once('open', function callback() {
   console.log('Connection with database succeeded.');
-  app.listen(config.port, function() {
+  app.listen(config.APP_PORT, function() {
     console.log('app listening on port %d in %s mode', this.address().port, app.settings.env);
   });
 });
