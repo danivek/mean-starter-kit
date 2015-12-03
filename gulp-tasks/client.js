@@ -84,6 +84,7 @@ gulp.task('client:watch', function() {
   gulp.watch('client/app/**/*.html', gulp.series(['client:template', 'client:inject'], browserSync.reload));
   gulp.watch(['client/app/*.js', 'client/app/**/*.js'], gulp.series(['client:lint-dev', 'client:inject'], browserSync.reload));
   gulp.watch('client/**/*.css', browserSync.reload);
+  gulp.watch('client/i18n/*.json', browserSync.reload);
 });
 
 gulp.task('client:build', function() {
