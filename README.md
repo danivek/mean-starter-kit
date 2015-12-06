@@ -8,6 +8,7 @@
 Client:
   - [AngularJS](https://angularjs.org/)
   - [AngularJS UI Router](https://github.com/angular-ui/ui-router)
+  - [John Papa's Angular styleguide](https://github.com/johnpapa/angular-styleguide): prepare migration to Angular 2.
   - [Bootstrap](http://getbootstrap.com/)
   - [angular-translate](https://github.com/angular-translate/angular-translate) (i18n)
   - Preconfigure i18n translations, with loading locale from the browser language.
@@ -34,10 +35,13 @@ Build:
   - Cache control with [gulp-rev](https://github.com/sindresorhus/gulp-rev)
   - Run mocha tests with code coverage
   - Application distribution build (dist folder)
-  - And more... See gulfile.js and gulp-tasks folder
+  - And more... See gulpfile.js and gulp-tasks folder
+
+Docker:
+  - DockerFile with node 4 official image
+  - docker-compose.yml with official mongodb image
 
 **Coming soon:**
-  - **Docker** with **Dockerfile** and **docker-compose.yml**
   - **Nginx config file**
   - **travis.yml**
   - **e2e tests** with [protractor](http://www.protractortest.org/#/)

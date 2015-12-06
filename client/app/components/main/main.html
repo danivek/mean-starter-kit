@@ -8,12 +8,12 @@
   <div class="container">
     <h2>List of things</h2>
     <div>
-      <button class="btn btn-success" ng-click="getThings()">{{'main.show' | translate}}</button>
+      <button class="btn btn-success" ng-click="mainVm.getThings()">{{'main.show' | translate}}</button>
       <ul>
-        <li ng-repeat="thing in thingsList">
+        <li ng-repeat="thing in mainVm.thingsList">
           name: {{thing.name}}, description: {{thing.description}}
         </li>
-        <li ng-if="thingsList.length == 0">
+        <li ng-if="mainVm.thingsList.length == 0">
           <strong>No results found...</strong>
         </li>
       </ul>
@@ -22,16 +22,16 @@
   <div class="container">
     <h2>Create a thing</h2>
     <div class="thing-form">
-      <form role="form" name="thingPostForm" ng-submit="postThing()" novalidate>
+      <form role="form" name="thingPostForm" ng-submit="mainVm.postThing()" novalidate>
         <div class="form-group">
           <label for="name">{{'main.name.label' | translate}}</label>
-          <input type="text" class="form-control" id="name" name="name" ng-model="thing.name" placeholder="{{'main.name.placeholder'| translate}}">
+          <input type="text" class="form-control" id="name" name="name" ng-model="mainVm.thing.name" placeholder="{{'main.name.placeholder'| translate}}">
         </div>
         <div class="form-group">
           <label for="description">{{'main.description.label' | translate}}</label>
-          <input type="text" class="form-control" id="description" name="description" ng-model="thing.description" placeholder="{{'main.description.placeholder'| translate}}">
+          <input type="text" class="form-control" id="description" name="description" ng-model="mainVm.thing.description" placeholder="{{'main.description.placeholder'| translate}}">
         </div>
-        <button type="submit" class="btn btn-success">{{'main.submit' | translate}}</button> {{status}}
+        <button type="submit" class="btn btn-success">{{'main.submit' | translate}}</button> {{mainVm.status}}
       </form>
     </div>
   </div>
