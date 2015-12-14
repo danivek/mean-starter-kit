@@ -1,5 +1,7 @@
 # mean-starter-kit
 
+[![Build Status](https://travis-ci.org/danivek/mean-starter-kit.svg?branch=master)](https://travis-ci.org/danivek/mean-starter-kit)
+[![Coverage Status](https://coveralls.io/repos/danivek/mean-starter-kit/badge.svg?branch=master&service=github)](https://coveralls.io/github/danivek/mean-starter-kit?branch=master)
 [![Dependency Status](https://david-dm.org/danivek/mean-starter-kit.svg)](https://david-dm.org/danivek/mean-starter-kit) [![devDependency Status](https://david-dm.org/danivek/mean-starter-kit/dev-status.svg)](https://david-dm.org/danivek/mean-starter-kit#info=devDependencies)
 
 > Starter kit (seed) for MEAN stack applications - MongoDB, Express, AngularJS, NodeJS with Gulp
