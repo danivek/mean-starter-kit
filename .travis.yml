@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - stable
+  - 4.2
+  - 0.12
+services: mongodb
+before_script:
+  - npm install -g npm@latest
+  - npm install -g bower
+  - npm install
+  - bower install
+script:
+  - npm run dist
+  - npm test
+after_script:
+  - npm run coveralls
