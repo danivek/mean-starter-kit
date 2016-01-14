@@ -16,6 +16,7 @@ var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
 var browserSync = require('browser-sync');
 var proxy = require('http-proxy-middleware');
+var os = require('os');
 
 gulp.task('client:lint', function() {
   return gulp.src(['client/app/**/*.js'])
@@ -75,7 +76,7 @@ gulp.task('client:serve', function(cb) {
       }
     },
     //browser: ['google chrome', 'firefox', 'internet explorer'],
-    browser: ['google chrome']
+    browser: (os.platform() === 'linux' ? ['google-chrome'] : ['google chrome'])
   }, cb);
 });
 
