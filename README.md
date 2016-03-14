@@ -10,7 +10,7 @@
 Client:
   - [AngularJS](https://angularjs.org/)
   - [AngularJS UI Router](https://github.com/angular-ui/ui-router)
-  - [John Papa's Angular styleguide](https://github.com/johnpapa/angular-styleguide): prepare migration to Angular 2.
+  - [John Papa's Angular styleguide](https://github.com/johnpapa/angular-styleguide)
   - [Bootstrap](http://getbootstrap.com/)
   - [angular-translate](https://github.com/angular-translate/angular-translate) (i18n)
   - Preconfigure i18n translations, with loading locale from the browser language.
@@ -33,10 +33,11 @@ Build:
   - [Gulp 4](http://gulpjs.com/) include various gulp plugins
   - [Browsersync](http://www.browsersync.io/) with livereload for client
   - [Nodemon](http://nodemon.io/) with livereload for server
-  - Lint code with jslint and jscsrc (help enforce a uniform coding style)
+  - Lint code with eslint (help enforce a uniform coding style)
   - Cache control with [gulp-rev](https://github.com/sindresorhus/gulp-rev)
   - Run mocha tests with code coverage
   - Application distribution build (dist folder)
+  - travis.yml
   - And more... See gulpfile.js and gulp-tasks folder
 
 Docker:
@@ -45,7 +46,6 @@ Docker:
 
 **Coming soon:**
   - **Nginx config file**
-  - **travis.yml**
   - **e2e tests** with [protractor](http://www.protractortest.org/#/)
   - ...
 
@@ -58,7 +58,7 @@ Docker:
 - Install: `npm install` and `bower install`
 - Run: `npm start` or if you have Gulp 4 on your environnement, just run: `gulp`
 - Run tests: `npm test` or if you have Gulp 4 on your environnement, just run: `gulp test`
-- Build dist: `gulp dist`
+- Build dist: `npm dist`
 
 ## Contribute
 

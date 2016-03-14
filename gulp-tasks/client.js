@@ -1,38 +1,33 @@
 'use strict';
 
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
-var stylish = require('gulp-jscs-stylish');
+var eslint = require('gulp-eslint');
 var inject = require('gulp-inject');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
+var cleanCss = require('gulp-clean-css');
 var templateCache = require('gulp-angular-templatecache');
 var angularFilesort = require('gulp-angular-filesort');
 var ngAnnotate = require('gulp-ng-annotate');
 var filter = require('gulp-filter');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
+var gulpIf = require('gulp-if');
 var browserSync = require('browser-sync');
 var proxy = require('http-proxy-middleware');
 var os = require('os');
 
 gulp.task('client:lint', function() {
   return gulp.src(['client/app/**/*.js'])
-    .pipe(jshint()) // jshint
-    .pipe(jscs()) // enforce style guide
-    .pipe(stylish.combineWithHintResults())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'));
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('client:lint-dev', function() {
   return gulp.src(['client/app/**/*.js'])
-    .pipe(jshint()) // jshint
-    .pipe(jscs()) // enforce style guide
-    .pipe(stylish.combineWithHintResults())
-    .pipe(jshint.reporter('jshint-stylish'));
+  .pipe(eslint())
+  .pipe(eslint.format())
 });
 
 gulp.task('client:template', function() {
@@ -89,7 +84,6 @@ gulp.task('client:watch', function() {
 });
 
 gulp.task('client:build', function() {
-  var assets = useref.assets();
   var jsFilter = filter('**/*.js', {
     restore: true
   });
@@ -97,17 +91,16 @@ gulp.task('client:build', function() {
     restore: true
   });
   return gulp.src('.tmp/index.html')
-    .pipe(assets)
-    .pipe(rev())
+    .pipe(useref())
     .pipe(jsFilter)
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    .pipe(minifyCss())
+    .pipe(cleanCss())
     .pipe(cssFilter.restore)
-    .pipe(assets.restore())
-    .pipe(useref())
+    .pipe(gulpIf('*.js', rev()))
+    .pipe(gulpIf('*.css', rev()))
     .pipe(revReplace())
     .pipe(gulp.dest('dist/public'));
 });

@@ -1,0 +1,10 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "rules": {
+    "no-console": 0
+  }
+}

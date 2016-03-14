@@ -1,25 +1,19 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
-var stylish = require('gulp-jscs-stylish');
+var eslint = require('gulp-eslint');
 var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-spawn-mocha');
 
 gulp.task('server:lint', function() {
   return gulp.src(['server/app.js', 'server/src/**/*.js'])
-    .pipe(jshint()) // jshint
-    .pipe(jscs()) // enforce style guide
-    .pipe(stylish.combineWithHintResults())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'));
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('server:lint-dev', function() {
   return gulp.src(['server/app.js', 'server/src/**/*.js'])
-    .pipe(jshint()) // jshint
-    .pipe(jscs()) // enforce style guide
-    .pipe(stylish.combineWithHintResults())
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(eslint())
+    .pipe(eslint.format())
 });
 
 gulp.task('server:build', function() {
