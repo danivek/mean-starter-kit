@@ -12,7 +12,6 @@ var ngAnnotate = require('gulp-ng-annotate');
 var filter = require('gulp-filter');
 var rev = require('gulp-rev');
 var revReplace = require('gulp-rev-replace');
-var gulpIf = require('gulp-if');
 var browserSync = require('browser-sync');
 var proxy = require('http-proxy-middleware');
 var os = require('os');
@@ -26,8 +25,8 @@ gulp.task('client:lint', function() {
 
 gulp.task('client:lint-dev', function() {
   return gulp.src(['client/app/**/*.js'])
-  .pipe(eslint())
-  .pipe(eslint.format())
+    .pipe(eslint())
+    .pipe(eslint.format())
 });
 
 gulp.task('client:template', function() {
@@ -95,12 +94,12 @@ gulp.task('client:build', function() {
     .pipe(jsFilter)
     .pipe(ngAnnotate())
     .pipe(uglify())
+    .pipe(rev())
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
     .pipe(cleanCss())
+    .pipe(rev())
     .pipe(cssFilter.restore)
-    .pipe(gulpIf('*.js', rev()))
-    .pipe(gulpIf('*.css', rev()))
     .pipe(revReplace())
     .pipe(gulp.dest('dist/public'));
 });
