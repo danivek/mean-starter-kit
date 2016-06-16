@@ -5,9 +5,14 @@
     .module('app')
     .config(config);
 
-  config.$inject = ['$translateProvider', 'tmhDynamicLocaleProvider'];
+  config.$inject = ['$translateProvider', 'tmhDynamicLocaleProvider', '$httpProvider', '$compileProvider'];
 
-  function config($translateProvider, tmhDynamicLocaleProvider) {
+  function config($translateProvider, tmhDynamicLocaleProvider, $httpProvider, $compileProvider) {
+
+    // Angular perfs best practices
+    $httpProvider.useApplyAsync(true);
+    $compileProvider.debugInfoEnabled(false);
+
     // i18n angular-translate
     $translateProvider.useStaticFilesLoader({
       prefix: 'i18n/app-locale_',
