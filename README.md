@@ -49,6 +49,12 @@ Docker:
   - **e2e tests** with [protractor](http://www.protractortest.org/#/)
   - ...
 
+## AngularJS best practices used
+
+  - [$httpProvider.useApplyAsync(true)](http://blog.thoughtram.io/angularjs/2015/01/14/exploring-angular-1.3-speed-up-with-applyAsync.html)
+  - [$compileProvider.debugInfoEnabled(false)](https://docs.angularjs.org/guide/production)
+  - Avoid [FOUC - Flash of untranslated content](https://angular-translate.github.io/docs/#/guide/12_asynchronous-loading#asynchronous-loading_fouc---flash-of-untranslated-content) with angular-translate by adding [translate-cloak directive](https://angular-translate.github.io/docs/#/api/pascalprecht.translate.directive:translateCloak). See [commit](https://github.com/danivek/mean-starter-kit/commit/ae8099d9177e36322f97d30401ed1b81fffe222f).
+
 ## Prerequisites
 
   * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/downloads) - If you plan on scaffolding your project with mongoose, you'll need mongoDB to be installed and have the `mongod` process running.
