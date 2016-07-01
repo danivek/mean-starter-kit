@@ -81,11 +81,11 @@ function reload(done) {
 }
 
 gulp.task('client:watch', function() {
-  gulp.watch('client/*.html').on('change', gulp.series(['client:inject'], reload));
-  gulp.watch('client/app/**/*.html').on('change', gulp.series(['client:template', 'client:inject'], reload));
-  gulp.watch('client/app/**/*.js').on('change', gulp.series(['client:lint-dev', 'client:inject'], reload));
-  gulp.watch('client/**/*.css').on('change', reload);
-  gulp.watch('client/i18n/*.json').on('change', reload);
+  gulp.watch('client/*.html', gulp.series(['client:inject'], reload));
+  gulp.watch('client/app/**/*.html', gulp.series(['client:template', 'client:inject'], reload));
+  gulp.watch('client/app/**/*.js', gulp.series(['client:lint-dev', 'client:inject'], reload));
+  gulp.watch('client/**/*.css', reload);
+  gulp.watch('client/i18n/*.json', reload);
 });
 
 gulp.task('client:build', function() {
