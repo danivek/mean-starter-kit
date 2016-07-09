@@ -1,11 +1,34 @@
-web:
-  build: .
-  ports:
-    - 3002:3002
-  links:
-    - "db:mongodb"
+version: '2'
 
-db:
-  image: mongo:3
-  ports:
-    - 27017
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+      - "443:443"
+    links:
+      - webapp:webapp
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/webapp.conf:/etc/nginx/conf.d/webapp.conf
+
+  webapp:
+    container_name: webapp
+    build: .
+    ports:
+      - "3002:3002"
+    links:
+      - mongodb:mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:3
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
+    driver: local

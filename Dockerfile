@@ -16,7 +16,6 @@ WORKDIR /src
 EXPOSE 3002
 
 # Define env variables
-# ENV NODE_CONFIG='{port:3002}'
 ENV NODE_ENV='production'
 
 # Run app

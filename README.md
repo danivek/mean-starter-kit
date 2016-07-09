@@ -42,10 +42,10 @@ Build:
 
 Docker:
   - DockerFile with node 4 official image
-  - docker-compose.yml with official mongodb image
+  - docker-compose.yml version 2 with official MongoDb and Nginx images
+  - Nginx configuration with caching
 
 **Coming soon:**
-  - **Nginx config file**
   - **e2e tests** with [protractor](http://www.protractortest.org/#/)
   - ...
 
