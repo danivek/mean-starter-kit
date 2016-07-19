@@ -18,24 +18,40 @@ var routes = require('./src/routes');
 var mongodbUrl = 'mongodb://' + config.DB_HOST + ':' + config.DB_PORT + '/' + config.DB_NAME;
 
 // Database options
+// Option auto_reconnect is defaulted to true
 var dbOptions = {
   server: {
+    reconnectTries: -1, // always attempt to reconnect
     socketOptions: {
-      keepAlive: 1
+      keepAlive: 120
     }
-  },
-  auto_reconnect: true
+  }
 };
 
+// Events on db connection
 mongoose.connection.on('error', function(err) {
-  console.error('MongoDB Connection Error. Please make sure MongoDB is running. -> ' + err);
+  console.error('MongoDB connection error. Please make sure MongoDB is running. -> ' + err);
 });
-// Auto reconnect on disconnected
+
 mongoose.connection.on('disconnected', function() {
-  mongoose.connect(mongodbUrl, dbOptions);
+  console.error('MongoDB connection disconnected.')
 });
+
+mongoose.connection.on('reconnected', function() {
+  console.error('MongoDB connection reconnected.')
+});
+
 // Connect to db
-mongoose.connect(mongodbUrl, dbOptions);
+var connectWithRetry = function() {
+  return mongoose.connect(mongodbUrl, dbOptions, function(err) {
+    if (err) {
+      console.error('Failed to connect to mongo on startup - retrying in 5 sec. -> ' + err);
+      setTimeout(connectWithRetry, 5000);
+    }
+  });
+};
+
+connectWithRetry();
 
 /**
  * Express app configurations
